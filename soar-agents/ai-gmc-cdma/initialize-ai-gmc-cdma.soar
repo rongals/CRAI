@@ -1,0 +1,42 @@
+sp {propose*initialize-ai-gmc-cdma
+   (state <s> ^superstate nil
+             -^name)
+-->
+   (<s> ^operator <o> +)
+   (<o> ^name initialize-ai-gmc-cdma)
+}
+
+sp {apply*initialize-ai-gmc-cdma
+   (state <s> ^operator <op>)
+   (<op> ^name initialize-ai-gmc-cdma)
+-->
+   (<s> ^name ai-gmc-cdma)
+   (<s> ^carrier <c1>)
+   (<s> ^carrier <c2>)
+   (<s> ^carrier <c3>)
+   (<s> ^carrier <c4>)
+   (<c1> ^cid 1 ^used no)
+   (<c2> ^cid 2 ^used no)
+   (<c3> ^cid 3 ^used no)
+   (<c4> ^cid 4 ^used no)
+   (<s> ^user <u1>)
+   (<s> ^user <u2>)
+   (<u1> ^uid 1 ^requires 2)
+   (<u2> ^uid 2 ^requires 2)
+   (<s> ^channel <h1>)
+   (<s> ^channel <h2>)
+   (<s> ^channel <h3>)
+   (<s> ^channel <h4>)
+   (<s> ^channel <h5>)
+   (<s> ^channel <h6>)
+   (<s> ^channel <h7>)
+   (<s> ^channel <h8>)
+   (<h1> ^carrier <c1> ^user <u1> ^value (/ 2 10))
+   (<h2> ^carrier <c2> ^user <u1> ^value (/ 5 10))
+   (<h3> ^carrier <c3> ^user <u1> ^value (/ 3 10))
+   (<h4> ^carrier <c4> ^user <u1> ^value (/ 2 10))
+   (<h5> ^carrier <c1> ^user <u2> ^value (/ 4 10))
+   (<h6> ^carrier <c2> ^user <u2> ^value (/ 9 10))
+   (<h7> ^carrier <c3> ^user <u2> ^value (/ 3 10))
+   (<h8> ^carrier <c4> ^user <u2> ^value (/ 10 10))
+}

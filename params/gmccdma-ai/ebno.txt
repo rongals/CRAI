@@ -1,0 +1,6 @@
+System_1.EbNo:                          0.0              ; SNR (dB)
+System_1.EbNo:                          5.0              ; SNR (dB)
+System_1.EbNo:                          10.0              ; SNR (dB)
+System_1.EbNo:                          15.0              ; SNR (dB)
+System_1.EbNo:                          20.0              ; SNR (dB)
+System_1.EbNo:                          25.0              ; SNR (dB)

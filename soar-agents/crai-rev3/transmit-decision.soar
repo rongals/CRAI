@@ -1,0 +1,33 @@
+#
+# if state is crai, it has an allocation-map and a spectrum-map,
+# there is at least a user in the allocation map and 
+# at least a carrier in the spectrum map,
+# and no users has needs > 0 WHEN there is a free carrier
+#
+# then goal-reached
+#
+
+sp {crai*propose*transmit-decision
+   (state <s> ^name crai
+              ^spectrum-map <sm>
+              ^allocation-map <am>)
+   (<am> ^user)
+   (<sm> ^carr)
+  -{(<am> ^user.needs > 0)
+    (<sm> ^carr <c>)
+    (<c> -^used-by)}
+   -(<s> ^command issued)
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name transmit-decision)
+}
+
+sp {apply*transmit-decision
+   (state <s> ^operator <op>
+              ^io.output-link <ol>
+              ^allocation-map <am>)
+   (<op> ^name transmit-decision)
+-->
+   (<ol> ^allocation-map <am>)
+   (<s> ^command issued)
+}

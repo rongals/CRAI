@@ -1,0 +1,15 @@
+sp {crai*elaborate*populate-spectrum-map
+   :o-support
+   (state <s> ^name crai
+              ^spectrum-map <sm>
+              ^io.input-link.carmap.carr.cid <icid>)
+  -{(<sm> ^carr.cid <icid>)}
+-->
+   (<sm> ^carr <c>)
+   (<c> ^cid <icid>)
+}
+
+#
+# giving O-support to this we cannot change carrier 
+# number during agent life
+#

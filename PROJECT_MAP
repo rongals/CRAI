@@ -1,0 +1,154 @@
+   ____ ____      _    ___
+  / ___|  _ \    / \  |_ _|
+ | |   | |_) |  / _ \  | |
+ | |___|  _ <  / ___ \ | |
+  \____|_| \_\/_/   \_\___|
+
+ COGNITIVE RADIO ARTIFICIAL INTELLIGENCE
+
+Main Modules
+
+ * Mudisp4 Simulation Framework
+ * SOAR Artificial Intelligence Agent
+
+Mudisp4 Blocks
+
+                                         +-----------+
+                     +----------+        |mbitsource1|
+                     |SOAR agent|        +-----------+
+                     +-----+----+              |
+                           |                   v
+                    +------+------+      +-----------+
+                +-->|maiallocator1|-+-2->|mblockuser1|3
+                |   +-------------+ |    +-----------+
+                1     ^             |          | 4
+                |     |             |          v
+  +-----------+ |     |             |    +-----------+
+  |mcpchcoeff1|++---------1---------+-+->| mchannel1 |
+  +-----------+       |             | |  +-----------+
+        |             |             | |        | 4
+        |             |             | |        v
+        v             |             | 1  +-----------+
+    track.kml         |             2 |  |  mawgn1   |
+        |             |             | |  +-----------+
+        v             |             | |        | 4
++--------------+      |             | |        v
+| Google Earth |      |             | ..>+-----------+
++--------------+      |             |...>|mblockrec11|3
+                      |                  +-----------+
+                      |                        |
+                      |                        v
+                      |                  +-----------+
+                      -<--DelayConnect-<-| mbitber1  |
+                                         +-----------+
+
+SOAR Agent [crai-rev4]
+
+
+ ^io                      ^io
+   ^input-link              ^output-link
+     ^usrmap                  ^command
+       ^maxerr                  ^name assign-free
+       ^pstep                   ^uid
+       ^pmax                    ^deassign
+       ^user      []            ^assign
+         ^uid     []          ^command
+         ^errs    []            ^name swap-carriers
+         ^power   []            ^u1
+         ^carr    [[]]          ^c1
+           ^cid   [[]]          ^u2
+           ^power [[]]          ^c2
+     ^channels                ^command
+       ^coeff     []            ^name increase-power
+       ^user      []            ^uid
+       ^carr      []            ^cid
+       ^value     []          ^command
+     ^carmap                    ^status
+       ^carr      []
+         ^cid     []
+     ^input-time
+
+
+Variables and Data Structures
+
+bpu   bit/user = K x bit/symbol
+K     uncoded information symbols per user
+J     coded information symbols per user
+N     subcarriers per frame
+L     cyclic prefix lenght
+M     active tx and rx
+
+matrix    dimension  ref  note
+
+ch        (M*M x N)  1    channel impulse response matrix from txi to rxj at time n
+coding    (J x K)    3    precoding matrix
+selection (N x J)    3    carrier selection matrix
+(i)fft    (N x N)    3    transform matrix
+signal    (N x M)    4    tx signal matrix
+signature (J x M)    2    carriers assignements, uint
+powers    (J x M)    2    power assignements, double
+
+
+SOAR crai-rev5 Cognitive engine 
+   one power increment per epoch
+   multiple swap allowed per carrier per epoch
+
+SOAR crai-rev4 Cognitive engine 
+   one power increment per epoch
+   swap a carrier at most once per epoch 
+
+Updates and notes:
+
+RN20130705
+procise model for user distribution
+snapshot model (new tx positions after GUI) 
+
+
+RN20130702
+production build
+created scripts for automatic runs: example:  ./launcher ./run-crai params/gmccdma-ai/crai-base-fixed_*
+
+
+RN20130627
+*** check channel matrix wmes in SOAR
+crai-rev5 agent created
+
+RN20130620
+corrected issue: gsl: ../gsl/gsl_matrix_double.h:277: ERROR: second index out of range
+multiple decisions per single frame
+corrected issue: increase power on same user,carrier should wait next error report
+
+RN20130619
+corrected issue: mobiles velocity
+corrected issue: segfault
+*** issue: gsl: ../gsl/gsl_matrix_double.h:277: ERROR: second index out of range
+
+RN20130614
+completed mudisp:: namespace with OkumuraHata models and helper functions
+completed noise computation
+*** issue: segfault for frequent error reports
+issue: mobiles too far during time CHECK VELOCITIES
+
+RN20130528
+collected all spatial channels updates in a single method
+pathloss too deep !!!
+
+RN20130527
+added spatial model in mcpcoeffs
+
+RN20130520
+SOAR agent is executed until a no-choices or a increase-power command is received for each frame
+SOAR agent: no-choices is the worst operator
+
+RN20130516
+every GEO_UPDATE a new input-time is generated; 
+GEO_UPDATE_INTERVAL in gmccdma.h; 
+changed SOAR agent to avoid multiple swap on the same carrier;
+TO MANAGE THE NO CHANGE STATUS !!!
+
+RN20130514
+we keep constant the channel coefficients for GEO_UPDATE_INTERVAL
+
+
+
+ 

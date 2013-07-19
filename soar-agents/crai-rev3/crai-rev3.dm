@@ -1,0 +1,150 @@
+74
+SOAR_ID 0
+SOAR_ID 1
+SOAR_ID 2
+SOAR_ID 3
+SOAR_ID 4
+ENUMERATION 5 1 state
+ENUMERATION 6 1 nil
+ENUMERATION 7 1 crai
+ENUMERATION 8 1 initialize-crai
+SOAR_ID 9
+ENUMERATION 10 1 allocate-carrier
+SOAR_ID 11
+ENUMERATION 12 1 copy-input
+SOAR_ID 13
+ENUMERATION 14 1 create-input
+SOAR_ID 15
+ENUMERATION 16 1 populate-spectrum-map
+SOAR_ID 17
+SOAR_ID 18
+SOAR_ID 19
+SOAR_ID 20
+SOAR_ID 21
+SOAR_ID 22
+SOAR_ID 23
+SOAR_ID 24
+SOAR_ID 25
+SOAR_ID 26
+SOAR_ID 27
+SOAR_ID 28
+SOAR_ID 29
+SOAR_ID 30
+SOAR_ID 31
+SOAR_ID 32
+SOAR_ID 33
+SOAR_ID 34
+SOAR_ID 35
+SOAR_ID 36
+INTEGER_RANGE 37 -2147483648 2147483647
+INTEGER_RANGE 38 -2147483648 2147483647
+SOAR_ID 39
+SOAR_ID 40
+INTEGER_RANGE 41 -2147483648 2147483647
+INTEGER_RANGE 42 -2147483648 2147483647
+INTEGER_RANGE 43 -2147483648 2147483647
+SOAR_ID 44
+INTEGER_RANGE 45 -2147483648 2147483647
+INTEGER_RANGE 46 -2147483648 2147483647
+SOAR_ID 47
+SOAR_ID 48
+INTEGER_RANGE 49 -2147483648 2147483647
+INTEGER_RANGE 50 -2147483648 2147483647
+SOAR_ID 51
+INTEGER_RANGE 52 -2147483648 2147483647
+SOAR_ID 53
+SOAR_ID 54
+ENUMERATION 55 1 state
+ENUMERATION 56 1 none
+SOAR_ID 57
+SOAR_ID 58
+SOAR_ID 59
+SOAR_ID 60
+SOAR_ID 61
+SOAR_ID 62
+INTEGER_RANGE 63 -2147483648 2147483647
+SOAR_ID 64
+ENUMERATION 65 1 wait
+SOAR_ID 66
+ENUMERATION 67 1 initialize-allocation-map
+SOAR_ID 68
+ENUMERATION 69 1 initialize-spectrum-map
+SOAR_ID 70
+ENUMERATION 71 1 transmit-decision
+SOAR_ID 72
+ENUMERATION 73 1 forget-allocation
+74
+0 allocation-map 17
+0 attribute 55
+0 choices 56
+0 io 1
+0 name 7
+0 operator 4
+0 operator 9
+0 operator 11
+0 operator 13
+0 operator 15
+0 operator 64
+0 operator 66
+0 operator 68
+0 operator 70
+0 operator 72
+0 spectrum-map 18
+0 superstate 6
+0 think-time 50
+0 top-state 0
+0 type 5
+1 input-link 2
+1 output-link 3
+2 carmap 48
+2 channels 19
+2 input-time 49
+2 usrmap 36
+3 allocation-map 54
+4 allcar 21
+4 allusr 26
+4 allval 31
+4 name 8
+9 allcar 20
+9 allusr 25
+9 allval 30
+9 name 10
+11 allcar 24
+11 allusr 29
+11 allval 34
+11 name 12
+13 allcar 22
+13 allusr 27
+13 allval 32
+13 name 14
+15 allcar 23
+15 allusr 28
+15 allval 33
+15 name 16
+17 user 35
+18 carr 51
+19 coeff 44
+35 allocation 60
+35 needs 52
+35 uid 57
+36 maxerr 38
+36 nusers 37
+36 pstep 39
+36 user 40
+40 errs 43
+40 requires 42
+40 uid 41
+44 carr 46
+44 user 45
+44 value 47
+48 carr 58
+51 cid 59
+51 used-by 53
+58 cid 63
+60 cid 61
+60 power 62
+64 name 65
+66 name 67
+68 name 69
+70 name 71
+72 name 73

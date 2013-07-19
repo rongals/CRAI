@@ -1,0 +1,8 @@
+sp {elaborations*goal-detection
+   (state <s> ^name ai-gmc-cdma)
+   -{(<s> ^carrier <c>)
+   (<c> ^used no)}
+-->
+   (write (crlf) |Problem Solved!|)
+   (halt)
+}
