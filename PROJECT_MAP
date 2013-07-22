@@ -8,10 +8,10 @@
 
 Main Modules
 
- * Mudisp4 Simulation Framework
+ * Mudisp3/4 Simulation Framework
  * SOAR Artificial Intelligence Agent
 
-Mudisp4 Blocks
+Mudisp3/4 Blocks
 
                                          +-----------+
                      +----------+        |mbitsource1|
@@ -42,7 +42,7 @@ Mudisp4 Blocks
                       -<--DelayConnect-<-| mbitber1  |
                                          +-----------+
 
-SOAR Agent [crai-rev4]
+SOAR Agent [crai-rev5]
 
 
  ^io                      ^io

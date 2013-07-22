@@ -34,5 +34,21 @@ Downlink for a cellular system
 MIMO systems
 (tx and rx grouped)
 
+*** Simulation and data reporting scripts ***
 
+Follow these steps to run simulations:
 
+1) edit source.me.noinput and change master GSL_RNG_SEED
+2) prepare param files in params/ folder
+3) ./launcher ./run-crai params/pattern*
+4) [optional] ./atq-clear removes all pending batch processes
+
+These steps to show results:
+
+1) launch gnuplot [interactive mode]
+2) gnunplot> load 'anallyzer/gmccdma-ai/crai.gnu'
+3) [optional] gnuplot> set term pdfcairo
+4) set output 'figure-name.pdf'
+5) replot
+
+ 
