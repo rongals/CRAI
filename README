@@ -46,9 +46,8 @@ Follow these steps to run simulations:
 These steps to show results:
 
 1) launch gnuplot [interactive mode]
-2) gnunplot> load 'anallyzer/gmccdma-ai/crai.gnu'
+2) gnunplot> load 'analyzer/gmccdma-ai/crai.gnu'
 3) [optional] gnuplot> set term pdfcairo
 4) set output 'figure-name.pdf'
 5) replot
-
  
