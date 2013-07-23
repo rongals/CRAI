@@ -99,8 +99,13 @@ SOAR crai-rev4 Cognitive engine
 
 Updates and notes:
 
+RN20130723
+*** found error on user positioning _ border of circle only
+added CHANNEL_REPORT_INTERVAL on maiallocator
+added sequence-timelaps time model
+
 RN20130705
-procise model for user distribution
+precise model for user geo distribution
 snapshot model (new tx positions after GUI) 
 
 

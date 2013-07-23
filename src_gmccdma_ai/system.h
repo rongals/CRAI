@@ -107,8 +107,8 @@ private:
 public:
 
   System():Block("System")
-	  ,_runs("Iterations",1,"Main iterations")
-	  ,Ebno("EbNo",3,"SNR (dB)")
+	  ,_runs("Iterations",3000000,"Main iterations")
+	  ,Ebno("EbNo",5,"SNR (dB)")
 	  ,RDist("RDist",1000,"Reference Distance (m)")
 	  ,K("SourceSymbs",2,"source symbols")
 	  ,J("CodedSymbs",4,"coded symbols")

@@ -229,25 +229,32 @@ void MCPMPCoeffs::Run() {
 	gsl_complex o = gsl_complex_rect(1,0);
 
 
-	// MODEL 1
-	// Single GeoInit
-	// Multiple Update Positions every GeoUpdateInterval
+	// GEO SPATIAL MODEL
+	// GeoInit every GEO_TIMELAPSE_INTERVAL (GTI)
+	// Update Positions every GEO_UPDATE_INTERVAL (GUI)
 	//
-	if (runCount++ % GEO_UPDATE_INTERVAL == 0) {
+	if (runCount % GEO_TIMELAPSE_INTERVAL == 0) {
 
-		// uncomment for time continuous model
-		//GeoUpdate(OFDM_SYMBOL_TIME_US * GEO_UPDATE_INTERVAL * 1.0e-6);
-
-		// uncomment for snapshot model
 		GeoInit();
-
 		SpatialChannelUpdate();
 
 		if (geoRenderEnabled)
 			GeoRender();
-		//cout << "Updating node positions." << endl;
 
-		//gsl_matrix_show(pathLoss);
+//		cout << "Generating new node positions." << endl;
+//		gsl_matrix_show(pathLoss);
+	}
+
+	if (runCount++ % GEO_UPDATE_INTERVAL == 0) {
+
+		GeoUpdate(OFDM_SYMBOL_TIME_US * GEO_UPDATE_INTERVAL * 1.0e-6);
+		SpatialChannelUpdate();
+
+		if (geoRenderEnabled)
+			GeoRender();
+
+//		cout << "Updating node positions." << endl;
+//		gsl_matrix_show(pathLoss);
 	}
 
 
@@ -257,8 +264,6 @@ void MCPMPCoeffs::Run() {
 	// CAI AND GIANNAKIS: 2D CHANNEL SIMULATION MODEL FOR SHADOWING PROCESSES
 	// IEEE Trans Veh Tech Vol 52, No. 6, Nov. 2003
 	//
-	//
-
 	//
 	// Exponentially decaying power profile
 	//
@@ -339,19 +344,11 @@ void MCPMPCoeffs::GeoInit(geo_init_type t) {
 			azimut = gsl_ran_flat(ran,0,2*M_PI);
 			dist = gsl_ran_flat(ran,0,GEO_AREA_RADIUS);
 
-			dx = GEO_AREA_RADIUS * gsl_sf_cos(azimut);
-			dy = GEO_AREA_RADIUS * gsl_sf_sin(azimut);
+			dx = dist * gsl_sf_cos(azimut);
+			dy = dist * gsl_sf_sin(azimut);
 
 
 			// wikipedia coordinates to create lat/lon -> x,y conversion functions
-
-			//  ____   ___  _   _  ___     ___  _   _ ___ _
-			// / ___| / _ \| \ | |/ _ \   / _ \| | | |_ _| |
-			// \___ \| | | |  \| | | | | | | | | | | || || |
-			//  ___) | |_| | |\  | |_| | | |_| | |_| || ||_|
-			// |____/ \___/|_| \_|\___/   \__\_\\___/|___(_)
-			//
-
 
 			lon = GEO_AREA_CENTER_LON + dx / londeg(GEO_AREA_CENTER_LAT);
 			lat = GEO_AREA_CENTER_LAT + dy / latdeg(GEO_AREA_CENTER_LAT);
@@ -583,4 +580,10 @@ double MCPMPCoeffs::londeg(double lat) {
 
 }
 
+//  ____   ___  _   _  ___     ___  _   _ ___ _
+// / ___| / _ \| \ | |/ _ \   / _ \| | | |_ _| |
+// \___ \| | | |  \| | | | | | | | | | | || || |
+//  ___) | |_| | |\  | |_| | | |_| | |_| || ||_|
+// |____/ \___/|_| \_|\___/   \__\_\\___/|___(_)
+//
 

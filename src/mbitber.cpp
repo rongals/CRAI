@@ -72,7 +72,7 @@ void MBitBer::Run() {
     } // user loop 
       
     
-    if (framecount ==  ERROR_REPORT_UPDATE_FR) { // report errors
+    if (framecount ==  ERROR_REPORT_INTERVAL) { // report errors
 
     	// dumperrs <- errocount
       gsl_vector_uint_memcpy(dumperrs,errcount);

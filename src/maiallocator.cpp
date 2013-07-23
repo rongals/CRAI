@@ -43,7 +43,7 @@
 
 //#define SHOW_POWER
 //#define SHOW_MATRIX
-#define SHOW_SOAR
+//#define SHOW_SOAR
 //#define SPAWN_DEBUGGER
 //#define PAUSED
 
@@ -166,6 +166,7 @@ void MAIAllocator::Setup() {
 
   framecount = 0;
   ericount = 0;
+  csicount = 0;
   noDecisions = 0;
   ostringstream cmd;
 
@@ -232,7 +233,7 @@ void MAIAllocator::Setup() {
     //
     // SOAR INITIALIZATION
     //
-    max_errors = MAX_ERROR_RATE * ERROR_REPORT_UPDATE_FR * Nb() * K();
+    max_errors = MAX_ERROR_RATE * ERROR_REPORT_INTERVAL * Nb() * K();
     cout << BlockName << " - Max errors tuned to " << max_errors << " errors/frame." << endl;
 
     //
@@ -423,29 +424,33 @@ void MAIAllocator::Run() {
   //
 
   // fetch error report
-  // e(u) = errors for user u in the last ERROR_REPORT_UPDATE_FR (ERU)frames
+  // e(u) = errors for user u in the last ERROR_REPORT_INTERVAL (ERI) frames
   gsl_vector_uint temperr  =  vin2.GetDataObj();
 
-  // update error reports at receiver rx_m every ERU
-  if (ericount % ERROR_REPORT_UPDATE_FR == 0) { // once every ERU
+  // update error reports at receiver rx_m every ERI
+  if (ericount % ERROR_REPORT_INTERVAL == 0) { // once every ERU
 	  if (temperr.size == M()) {
 		  gsl_vector_uint_memcpy(errs,&temperr);
 	  }
 	  ericount = 0;
   }
 
+  //
+  // every CHANNEL_REPORT_INTERVAL extract huu (time domain response of channels tx_u --> rx_u)
+  //
+  if (csicount++ % CHANNEL_REPORT_INTERVAL == 0) {
+	  for (int u=0;u<M();u++) { // user loop
 
-  // extract huu (time domain response of channels tx_u --> rx_u)
-  for (int u=0;u<M();u++) { // user loop
+		  // extract time domain response from hmm corresponding to txn-->rxn channel
+		  gsl_vector_complex_const_view hii = gsl_matrix_complex_const_row(&hmm,u*M()+u);
 
-    // extract time domain response from hmm corresponding to txn-->rxn channel
-    gsl_vector_complex_const_view hii = gsl_matrix_complex_const_row(&hmm,u*M()+u);
+		  // copy the N-sized vector hii into u-th column of huu
+		  gsl_matrix_complex_set_col(huu,u,&hii.vector);
 
-    // copy the N-sized vector hii into u-th column of huu
-    gsl_matrix_complex_set_col(huu,u,&hii.vector);
+	  } // user loop
 
-  } // user loop
-
+	  csicount=0;
+  } // if
 
   //  huu matrix structure
   //
@@ -743,9 +748,12 @@ void MAIAllocator::Run() {
 
 
 
-    // keypress 
-	//  cout << "pause maillocator:620 ... (press ENTER key)" << endl;
-    // cin.ignore();
+#ifdef PAUSED
+      // keypress
+      cout << "pause maillocator: before decision loop  ... (press ENTER key)" << endl;
+      cin.ignore();
+#endif
+
 
 
 	  // Every GEO_UPDATE_INTERVAL we increase the input-time and allow decisions
@@ -776,7 +784,7 @@ void MAIAllocator::Run() {
 
 #ifdef PAUSED
       // keypress 
-      cout << "pause maillocator:663 ... (press ENTER key)" << endl;
+      cout << "pause maillocator: after RunSelfTilOutput() ... (press ENTER key)" << endl;
       cin.ignore();
 #endif
 

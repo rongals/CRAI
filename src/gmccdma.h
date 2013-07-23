@@ -26,16 +26,30 @@
 //#define GIANNAKIS_PRECODING
 
 //
-//the constant ERROR_REPORT_UPDATE_FR defines the number of frames
+//the constant ERROR_REPORT_INTERVAL defines the number of frames
 //received from each user before updating an error report.
 //
-#define ERROR_REPORT_UPDATE_FR 50
+#define ERROR_REPORT_INTERVAL 50
+
+//
+// frequency of channel updates available at allocator module
+//
+#define CHANNEL_REPORT_INTERVAL 50
 
 // symbol tyme in microseconds
 #define OFDM_SYMBOL_TIME_US 126.0
 
+//
+// Model timing
+// The model consider a sequence of continuous time segments. Within a segment the
+// geo positions are updated accordingly to the model every GEO_UPDATE_INTERVAL frames.
+// At end of each segment a fresh set of positions is drawn.
+//
+
 // every x OFDM symbols a spatial channel update
 #define GEO_UPDATE_INTERVAL 10
 
+// every x OFDM symbols a new set of positions is generated
+#define GEO_TIMELAPSE_INTERVAL 1000
 
 #endif // MUDISP_GMCCDMA_H

@@ -41,7 +41,7 @@ class MAIAllocator : public Block {
   
   ////////   Local Attributes
  
-  unsigned int curruser,framecount, ericount, numberCommands, input_time, max_errors, noDecisions;
+  unsigned int curruser,framecount, ericount, csicount, numberCommands, input_time, max_errors, noDecisions;
   gsl_matrix_uint *Hperm;
   gsl_permutation *p; 
   gsl_vector *huserabs;
@@ -159,8 +159,8 @@ public:
     ,M("NumUsers",2,"number of users")
     ,N("Carriers",16,"number of carriers")
     ,J("CodedSymbs",16,"coded symbols")
-    ,Mode("AllocatorMode",0,"0=fca,1=bst,2=swp,3=ovl,4=SOAR") // note: leave default to non SOAR mode
-    ,SoarFn("SoarFn","./soar-agents/crai-rev2.soar","SOAR agent filename")
+    ,Mode("AllocatorMode",1,"0=fca,1=bst,2=swp,3=ovl,4=SOAR") // note: leave default to non SOAR mode
+    ,SoarFn("SoarFn","/usr/local/sandbox_ronga/CRAI/soar-agents/crai-rev5.soar","SOAR agent filename")
     {
 
       //////// local parameter registration
