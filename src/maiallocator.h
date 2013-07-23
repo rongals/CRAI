@@ -36,7 +36,7 @@ class MAIAllocator : public Block {
 
   ////////   Parameters instances
 
-  IntParam K,Nb,J,N,Mode,M;
+  IntParam K,Nb,J,N,Mode,M, ERI, CRI;
   StringParam SoarFn;
   
   ////////   Local Attributes
@@ -161,6 +161,7 @@ public:
     ,J("CodedSymbs",16,"coded symbols")
     ,Mode("AllocatorMode",1,"0=fca,1=bst,2=swp,3=ovl,4=SOAR") // note: leave default to non SOAR mode
     ,SoarFn("SoarFn","/usr/local/sandbox_ronga/CRAI/soar-agents/crai-rev5.soar","SOAR agent filename")
+    ,CRI("CRI",50,"Channel report interval")
     {
 
       //////// local parameter registration
@@ -171,6 +172,7 @@ public:
       AddParameter(J);
       AddParameter(Mode);
       AddParameter(SoarFn);
+      AddParameter(CRI);
 
     }
 

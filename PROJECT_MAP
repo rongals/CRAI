@@ -102,7 +102,8 @@ Updates and notes:
 RN20130723
 *** found error on user positioning _ border of circle only
 added CHANNEL_REPORT_INTERVAL on maiallocator
-added sequence-timelaps time model
+added sequence-timelaps time model (ERI,CRI())
+
 
 RN20130705
 precise model for user geo distribution

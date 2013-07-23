@@ -25,19 +25,12 @@
 // 
 //#define GIANNAKIS_PRECODING
 
-//
-//the constant ERROR_REPORT_INTERVAL defines the number of frames
-//received from each user before updating an error report.
-//
-#define ERROR_REPORT_INTERVAL 50
-
-//
-// frequency of channel updates available at allocator module
-//
-#define CHANNEL_REPORT_INTERVAL 50
 
 // symbol tyme in microseconds
 #define OFDM_SYMBOL_TIME_US 126.0
+
+// error report interval
+#define ERROR_REPORT_INTERVAL 50
 
 //
 // Model timing

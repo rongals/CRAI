@@ -438,7 +438,7 @@ void MAIAllocator::Run() {
   //
   // every CHANNEL_REPORT_INTERVAL extract huu (time domain response of channels tx_u --> rx_u)
   //
-  if (csicount++ % CHANNEL_REPORT_INTERVAL == 0) {
+  if (csicount++ % CRI() == 0) {
 	  for (int u=0;u<M();u++) { // user loop
 
 		  // extract time domain response from hmm corresponding to txn-->rxn channel
@@ -757,7 +757,7 @@ void MAIAllocator::Run() {
 
 
 	  // Every GEO_UPDATE_INTERVAL we increase the input-time and allow decisions
-	  if (framecount % GEO_UPDATE_INTERVAL == 0) {
+	  if (framecount % CRI() == 0) {
 		  pAgent->Update(inputTime,++input_time);
 		  pAgent->Commit();
 	  }
