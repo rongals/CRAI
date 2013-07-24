@@ -20,6 +20,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <time.h>
+
 
 #define GEO_AREA_CENTER_LAT 43.807635	// LAT of center area
 #define GEO_AREA_CENTER_LON 11.195560	// LON of center area
@@ -28,6 +30,7 @@
 #define EARTH_RADIUS 6371.009 // km
 #define M_PI_OVER_180 M_PI/180.0
 
+#define KML_REFRESH_TIME 4 // sec
 
 // vx (km/h), vy (km/h)
 // deltalon deltalat (deg/s)
@@ -88,7 +91,7 @@ class MCPMPCoeffs : public Block {
   // Geo Rendering
   ostringstream kmlhead,kmlobject,kmlheadend;
   ofstream ofs;
-
+  time_t tlast, tnow;
 
  public:
 

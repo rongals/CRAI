@@ -43,6 +43,6 @@
 #define GEO_UPDATE_INTERVAL 10
 
 // every x OFDM symbols a new set of positions is generated
-#define GEO_TIMELAPSE_INTERVAL 1000
+#define GEO_TIMELAPSE_INTERVAL 100000
 
 #endif // MUDISP_GMCCDMA_H

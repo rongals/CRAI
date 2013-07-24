@@ -436,9 +436,10 @@ void MAIAllocator::Run() {
   }
 
   //
-  // every CHANNEL_REPORT_INTERVAL extract huu (time domain response of channels tx_u --> rx_u)
+  // every Channel Report Update CRI() frames we perform a new allocation
   //
-  if (csicount++ % CRI() == 0) {
+  if (framecount % CRI() == 0) {
+
 	  for (int u=0;u<M();u++) { // user loop
 
 		  // extract time domain response from hmm corresponding to txn-->rxn channel
@@ -449,8 +450,7 @@ void MAIAllocator::Run() {
 
 	  } // user loop
 
-	  csicount=0;
-  } // if
+	  //cout << "maiallocator:453 - CSI update received" << endl;
 
   //  huu matrix structure
   //
@@ -868,8 +868,13 @@ void MAIAllocator::Run() {
 
   } // switch (Mode())
 
-  if (framecount % 10 == 0)
-	  cout << "frame: " << framecount << endl;
+} // if CHANNEL_REPORT_UPDATE
+
+
+  if (framecount % 1000 == 0) {
+	  cout << "frame:" << framecount << "\r";
+	  cout.flush();
+  }
 
   //////// production of data
   framecount++;

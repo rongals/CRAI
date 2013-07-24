@@ -118,6 +118,10 @@ void MCPMPCoeffs::Setup() {
     GeoRender();
   }
 
+  // time of last kml writing
+  time(&tnow);
+  tlast=tnow;
+
   //
   // SOS Spatial Channel Model
   //
@@ -426,54 +430,63 @@ void MCPMPCoeffs::GeoUpdate(double seconds) {
 
 void MCPMPCoeffs::GeoRender() {
 
-  ostringstream kmltmp;
+	ostringstream kmltmp;
 
-  //  kmlobject.seekp(ios_base::beg);
+	// write in file if last write is older then KML_REFRESH_TIME
+	time(&tnow);
 
-  for (int i=0;i<M();i++) { // tx loop
+	if (difftime(tnow,tlast) > KML_REFRESH_TIME) {
 
-    gsl_complex pos = gsl_vector_complex_get(geoPositions,i);
+		tlast = tnow;
 
-    kmltmp.precision(10);
-    kmltmp << "\t<Placemark>" << endl
-	      << "\t\t<name>Tx_" << i << "</name>" << endl
-	      << "\t\t<description>^</description>" << endl
-	      << "\t\t<styleUrl>#greenIcon</styleUrl>" << endl
-	      << "\t\t<Point>" << endl
-	      << "\t\t\t<coordinates>" << GSL_IMAG(pos) << ","
-	      << GSL_REAL(pos) << ","
-	      << 0 << "</coordinates>" << endl
-	      << "\t\t</Point>" << endl
-	      << "\t</Placemark>" << endl;
-  }
+		for (int i=0;i<M();i++) { // tx loop
 
-  for (int i=0;i<M();i++) { // rx loop
-    
-    gsl_complex pos = gsl_vector_complex_get(geoPositions,i+_M);
-    
-    kmltmp.precision(10);
-    kmltmp << "\t<Placemark>" << endl
-	      << "\t\t<name>Rx_" << i << "</name>" << endl
-	      << "\t\t<description>^</description>" << endl
-	      << "\t\t<styleUrl>#blueIcon</styleUrl>" << endl      
-	      << "\t\t<Point>" << endl
-	      << "\t\t\t<coordinates>" << GSL_IMAG(pos) << "," 
-	      << GSL_REAL(pos) << "," 
-	      << 0 << "</coordinates>" << endl
-	      << "\t\t</Point>" << endl
-	      << "\t</Placemark>" << endl;
-  }
+			gsl_complex pos = gsl_vector_complex_get(geoPositions,i);
 
 
-  ofs.open(GeoFn());  
-  if (! ofs ) {
-    cerr << BlockName << ": error opening "
-	 << GeoFn() << endl;
-    exit(_ERROR_OPEN_FILE_);
-  }
+			kmltmp.precision(10);
+			kmltmp << "\t<Placemark>" << endl
+					<< "\t\t<name>Tx_" << i << "</name>" << endl
+					<< "\t\t<description>^</description>" << endl
+					<< "\t\t<styleUrl>#greenIcon</styleUrl>" << endl
+					<< "\t\t<Point>" << endl
+					<< "\t\t\t<coordinates>" << GSL_IMAG(pos) << ","
+					<< GSL_REAL(pos) << ","
+					<< 0 << "</coordinates>" << endl
+					<< "\t\t</Point>" << endl
+					<< "\t</Placemark>" << endl;
+		}
 
-  ofs << kmlhead.str() << kmltmp.str() << kmlheadend.str();
-  ofs.close();
+		for (int i=0;i<M();i++) { // rx loop
+
+			gsl_complex pos = gsl_vector_complex_get(geoPositions,i+_M);
+
+			kmltmp.precision(10);
+			kmltmp << "\t<Placemark>" << endl
+					<< "\t\t<name>Rx_" << i << "</name>" << endl
+					<< "\t\t<description>^</description>" << endl
+					<< "\t\t<styleUrl>#blueIcon</styleUrl>" << endl
+					<< "\t\t<Point>" << endl
+					<< "\t\t\t<coordinates>" << GSL_IMAG(pos) << ","
+					<< GSL_REAL(pos) << ","
+					<< 0 << "</coordinates>" << endl
+					<< "\t\t</Point>" << endl
+					<< "\t</Placemark>" << endl;
+		}
+
+		ofs.open(GeoFn());
+		if (! ofs ) {
+			cerr << BlockName << ": error opening "
+					<< GeoFn() << endl;
+			exit(_ERROR_OPEN_FILE_);
+		} // if !ofs
+
+		ofs << kmlhead.str() << kmltmp.str() << kmlheadend.str();
+		ofs.close();
+
+		//cout << "hei! 4 sec passed !" << endl;
+
+	} // if difftime
 
 }
 
