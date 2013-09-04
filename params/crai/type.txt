@@ -1,0 +1,4 @@
+System_1.MAIAllocator_1.AllocatorMode:  0              ; 0=fca,1=bst,2=swp,3=ovl,4=SOAR
+System_1.MAIAllocator_1.AllocatorMode:  1              ; 0=fca,1=bst,2=swp,3=ovl,4=SOAR
+System_1.MAIAllocator_1.AllocatorMode:  2              ; 0=fca,1=bst,2=swp,3=ovl,4=SOAR
+System_1.MAIAllocator_1.AllocatorMode:  4              ; 0=fca,1=bst,2=swp,3=ovl,4=SOAR

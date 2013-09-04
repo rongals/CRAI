@@ -1,0 +1,4 @@
+System_1.MBitBer_1.OutFile:             results/crai/crai-8m32c4j-fca.dat 
+System_1.MBitBer_1.OutFile:             results/crai/crai-8m32c4j-best.dat 
+System_1.MBitBer_1.OutFile:             results/crai/crai-8m32c4j-swap.dat 
+System_1.MBitBer_1.OutFile:             results/crai/crai-8m32c4j-soar.dat 
