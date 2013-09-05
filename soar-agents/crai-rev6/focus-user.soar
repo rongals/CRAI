@@ -1,0 +1,27 @@
+# if
+# no focus present
+# no pending commands in output-link
+# input-link.usrmap.user <u> exists
+# --> propose user <u> to focus
+#
+
+
+
+sp {crai*propose*focus-user
+   (state <s> ^name crai
+              ^io.input-link.usrmap.user <u>
+              ^io.output-link (-^<name>)
+              -^focus <f>)
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name focus-user
+         ^uid <u>)
+}
+
+sp {apply*focus-user
+   (state <s> ^operator <op>)
+   (<op> ^name focus-user
+         ^uid <u>)
+-->
+   (<s> ^focus <u>)
+}
