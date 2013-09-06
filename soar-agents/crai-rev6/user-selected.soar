@@ -1,0 +1,9 @@
+sp {crai*propose*user
+   (state <s> ^name crai
+              ^io.input-link.usrmap.user.uid <uid>
+             -^io.output-link.swap-carriers <swp>)
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name user
+         ^uid <uid>)
+}

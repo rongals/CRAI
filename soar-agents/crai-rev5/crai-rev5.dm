@@ -1,4 +1,4 @@
-106
+108
 SOAR_ID 0
 SOAR_ID 1
 SOAR_ID 2
@@ -105,7 +105,9 @@ SOAR_ID 102
 ENUMERATION 103 1 no-choices
 SOAR_ID 104
 ENUMERATION 105 1 no-choices
-106
+SOAR_ID 106
+ENUMERATION 107 1 select-user
+108
 0 conflicts 29
 0 current-time 96
 0 free-carriers 30
@@ -126,6 +128,7 @@ ENUMERATION 105 1 no-choices
 0 operator 100
 0 operator 102
 0 operator 104
+0 operator 106
 0 processed 97
 0 superstate 6
 0 top-state 0
@@ -212,3 +215,4 @@ ENUMERATION 105 1 no-choices
 100 name 101
 102 name 103
 104 name 105
+106 name 107

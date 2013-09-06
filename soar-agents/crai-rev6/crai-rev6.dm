@@ -1,4 +1,4 @@
-108
+112
 SOAR_ID 0
 SOAR_ID 1
 SOAR_ID 2
@@ -107,7 +107,11 @@ SOAR_ID 104
 ENUMERATION 105 1 no-choices
 SOAR_ID 106
 ENUMERATION 107 1 focus-user
-108
+SOAR_ID 108
+ENUMERATION 109 1 user-selected
+SOAR_ID 110
+ENUMERATION 111 1 swap
+112
 0 conflicts 29
 0 current-time 96
 0 free-carriers 30
@@ -129,6 +133,8 @@ ENUMERATION 107 1 focus-user
 0 operator 102
 0 operator 104
 0 operator 106
+0 operator 108
+0 operator 110
 0 processed 97
 0 superstate 6
 0 top-state 0
@@ -216,3 +222,5 @@ ENUMERATION 107 1 focus-user
 102 name 103
 104 name 105
 106 name 107
+108 name 109
+110 name 111

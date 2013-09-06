@@ -5,15 +5,11 @@ popd
 pushd elaborations
 source elaborations_source.soar
 popd
-source assign-free.soar
 source create-dummy-inputs.soar
 source delete-command.soar
-source focus-user.soar
-source implement-assign-free.soar
-source implement-increase-power.soar
 source implement-swap-carriers.soar
-source increase-power.soar
 source initialize-crai.soar
 source no-choices.soar
-source swap-carriers.soar
+source swap.soar
 source update-time.soar
+source user-selected.soar

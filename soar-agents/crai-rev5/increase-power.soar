@@ -5,6 +5,7 @@
 
 sp {crai*propose*increase-power
    (state <s> ^name crai
+              ^selected <u>
               ^io.input-link.usrmap (^maxerr <maxe> ^pmax <pm> ^user
                                     (<u> ^power < <pm> 
                                          ^errs > <maxe> 

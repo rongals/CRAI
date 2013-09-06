@@ -68,7 +68,6 @@ SOAR Agent [crai-rev5]
          ^cid     []
      ^input-time
 
-
 Variables and Data Structures
 
 bpu   bit/user = K x bit/symbol
@@ -88,6 +87,10 @@ signal    (N x M)    4    tx signal matrix
 signature (J x M)    2    carriers assignements, uint
 powers    (J x M)    2    power assignements, double
 
+SOAR crai-rev6 Cognitive engine 
+   per user processing
+   propose a swap
+   wait for error report
 
 SOAR crai-rev5 Cognitive engine 
    one power increment per epoch
@@ -99,7 +102,9 @@ SOAR crai-rev4 Cognitive engine
 
 Updates and notes:
 
-..
+RN20130905
+#### MAJOR MODIFICATION ####
+AI agent will try to detect the most convenient carrier to put power on.
 
 RN20130723
 *** found error on user positioning _ border of circle only

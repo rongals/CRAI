@@ -1,5 +1,6 @@
 sp {crai*propose*assign-free
    (state <s> ^name crai
+              ^selected <uid>
               ^conflicts.carr <bad>
               ^free-carriers.carr.cid <free>
               ^io.output-link (-^<name>))

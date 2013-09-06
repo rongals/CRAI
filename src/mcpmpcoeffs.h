@@ -23,21 +23,14 @@
 #include <time.h>
 
 
-#define GEO_AREA_CENTER_LAT 43.807635	// LAT of center area
-#define GEO_AREA_CENTER_LON 11.195560	// LON of center area
-#define GEO_AREA_RADIUS 1200			// radius of GEO area (in metres)
-
 #define EARTH_RADIUS 6371.009 // km
 #define M_PI_OVER_180 M_PI/180.0
 
-#define KML_REFRESH_TIME 4 // sec
 
 // vx (km/h), vy (km/h)
 // deltalon deltalat (deg/s)
 // deltalon = vx / 3.6 / 111111 Cos[lat]
 // deltalat = vy / 3.6 / 111111 
-#define GEO_VELOCITY_MIN 20.0 // expressed in km/h
-#define GEO_VELOCITY_MAX 90.0 // expressed in km/h
 
 
 // Accuracy versus decimal places at the equator

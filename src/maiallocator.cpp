@@ -10,10 +10,7 @@
 #include "gmccdma.h"
 #include "propagation.h"
 
-#define INIT_CARR_POWER 1.0
-#define POWER_STEP 0.1
-#define MAX_ERROR_RATE 0.01
-#define MAX_POWER 10.0 
+
 
 // FIXED_ALLOCATION
 // each user is assigned a fixed set of carriers chosen with the modulus 
@@ -436,9 +433,9 @@ void MAIAllocator::Run() {
   }
 
   //
-  // every Channel Report Update CRI() frames we perform a new allocation
+  // every DECISION_INTERVAL frames we updates the CSI knowledge
   //
-  if (framecount % CRI() == 0) {
+  if (framecount % DECISION_INTERVAL == 0) {
 
 	  for (int u=0;u<M();u++) { // user loop
 
@@ -718,7 +715,6 @@ void MAIAllocator::Run() {
     }
     
   }
-
  
   //
   // each user take his best carriers allowing carrier overlap
@@ -741,11 +737,17 @@ void MAIAllocator::Run() {
   case 4:   //  SOAR_AI
 
 
-    //
-    // SOAR
-    //
-    // we base the decisions on the frequency response tx_m --> rx_m in Hmat(N,M)
-
+	  //
+	  // SOAR
+	  //
+	  // agent crai5
+	  // bases the decisions on the frequency response tx_m --> rx_m in Hmat(N,M)
+	  // for each user it proposes a swap between carriers if the instantaneous impulse channel response
+	  // is better
+	  //
+	  // agent crai6
+	  // for each user it proposes a swap of allocated carriers with one other users
+	  // error report is the metric for correct decisions (RL)
 
 
 #ifdef PAUSED
@@ -756,8 +758,8 @@ void MAIAllocator::Run() {
 
 
 
-	  // Every GEO_UPDATE_INTERVAL we increase the input-time and allow decisions
-	  if (framecount % CRI() == 0) {
+	  // Every DECISION_INTERVAL we increase the input-time and allow decisions
+	  if (framecount % DECISION_INTERVAL == 0) {
 		  pAgent->Update(inputTime,++input_time);
 		  pAgent->Commit();
 	  }
@@ -868,7 +870,7 @@ void MAIAllocator::Run() {
 
   } // switch (Mode())
 
-} // if CHANNEL_REPORT_UPDATE
+} // if DECISION_INTERVAL % 0
 
 
   if (framecount % 1000 == 0) {

@@ -1,0 +1,8 @@
+sp {elaborations*elaborate*user
+   (state <s> ^name user
+              ^superstate.operator <so>)
+   (<so> ^name user
+         ^uid <uid>)
+-->
+   (<s> ^selected <uid> )
+}

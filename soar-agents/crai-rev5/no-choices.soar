@@ -3,7 +3,6 @@
 # propose and apply no-choices command
 #
 
-
 sp {default*propose*no-choices
    (state <ss> ^top-state <ts>
                ^choices none
@@ -13,11 +12,26 @@ sp {default*propose*no-choices
    (<o> ^name no-choices)
 }
 
+
 sp {crai*apply*no-choices
    (state <s> ^name crai
               ^operator <op>
+              ^selected <u>
               ^io.output-link <ol>)
    (<op> ^name no-choices)
 -->
+   (<s> ^selected <u> -)
    (<ol> ^no-choices <cmd>)
 }
+
+
+#
+#sp {crai*apply*no-choices
+#   (state <s> ^name crai
+#              ^operator <op>
+#              ^io.output-link <ol>)
+#   (<op> ^name no-choices)
+#-->
+#   (<ol> ^no-choices <cmd>)
+#}
+#

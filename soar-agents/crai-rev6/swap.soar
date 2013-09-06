@@ -1,0 +1,36 @@
+#
+# if state is user-selected
+# propose swap on carriers
+#
+
+
+sp {user*propose*swap
+   (state <s> ^name user
+              ^selected <uid1>
+              ^io.input-link.usrmap.user (^uid <uid1> ^carr (^cid <cid1>))
+                                         (^uid {<> <uid1> <uid2>} ^carr (^cid {<> <cid1> <cid2>})))
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name swap
+         ^u1 <uid1>
+         ^c1 <cid1>
+         ^u2 <uid2>
+         ^c2 <cid2>)
+}
+
+
+sp {apply*swap
+   (state <s> ^operator <op>
+              ^io.output-link <ol>)
+   (<op> ^name swap
+         ^u1 <uid1>
+         ^c1 <cid1>
+         ^u2 <uid2>
+         ^c2 <cid2>)
+-->
+   (<ol> ^swap-carriers <cmd>)
+   (<cmd> ^u1 <uid1>
+          ^c1 <cid1>
+          ^u2 <uid2>
+          ^c2 <cid2>)
+}

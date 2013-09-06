@@ -11,6 +11,7 @@
 
 sp {crai*propose*swap-carriers
    (state <s> ^name crai
+              ^selected <uid1>
               ^io.input-link.usrmap.user (^uid <uid1> ^carr (^cid <cid1>)) 
                                          (^uid {<> <uid1> <uid2>} ^carr (^cid {<> <cid1> <cid2>}))
               ^io.input-link.channels.coeff (^carr <cid1> ^user <uid1> ^value <v1>)
@@ -30,13 +31,15 @@ sp {crai*propose*swap-carriers
 
 sp {apply*swap-carriers
    (state <s> ^operator <op>
-              ^io.output-link <ol>)
+              ^io.output-link <ol>
+              ^selected <u>)
    (<op> ^name swap-carriers
          ^u1 <uid1>
          ^c1 <cid1>
          ^u2 <uid2>
          ^c2 <cid2>)
 -->
+   (<s> ^selected <u> -)
    (<ol> ^swap-carriers <cmd>)
    (<cmd> ^u1 <uid1>
           ^c1 <cid1>

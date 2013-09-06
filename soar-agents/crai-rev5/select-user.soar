@@ -1,0 +1,23 @@
+#
+# if state is crai and a user is not already selected and 
+# input-link.usrmap.user.uid <uid> exists propose select-user 
+#
+
+
+sp {crai*propose*select-user
+   (state <s> ^name crai
+              ^io.input-link.usrmap.user.uid <uid1>
+             -^selected <u>)
+-->
+   (<s> ^operator <op> + =)
+   (<op> ^name select-user
+         ^user <uid1>)
+}
+
+sp {apply*select-user
+   (state <s> ^operator <op>)
+   (<op> ^name select-user
+         ^user <uid>)
+-->
+   (<s> ^selected <uid>)
+}

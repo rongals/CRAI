@@ -25,7 +25,7 @@ sp {apply*create-dummy-inputs
    (<u0> ^uid 0 ^errs   0 ^power 2.0 ^carr <a00> <a01>)
    (<u1> ^uid 1 ^errs 130 ^power 2.0 ^carr <a10> <a11>)
    (<a00> ^cid 0 ^power 1.0)
-   (<a01> ^cid 1 ^power 1.0)
+   (<a01> ^cid 2 ^power 1.0)
    (<a10> ^cid 1 ^power 1.0)
    (<a11> ^cid 3 ^power 1.0)
    
