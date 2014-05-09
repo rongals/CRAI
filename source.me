@@ -1,6 +1,7 @@
 #!/bin/bash
-export ECLIPSE_HOME=/usr/local/sandbox_ronga/eclipse
-export SOAR_HOME=/usr/local/sandbox_ronga/SOAR/bin
+export VAULT_HOME=/vault
+export ECLIPSE_HOME=$VAULT_HOME/sandbox_ronga/eclipse
+export SOAR_HOME=$VAULT_HOME/sandbox_ronga/SOAR/bin
 export PATH=$PATH:$SOAR_HOME:$ECLIPSE_HOME
 export LD_LIBRARY_PATH=$SOAR_HOME
 alias vs='java -jar "$SOAR_HOME/VisualSoar.jar"'

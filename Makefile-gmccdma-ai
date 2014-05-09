@@ -4,7 +4,7 @@
 
 ##########################################
 #  SOAR support
-SOARHOME=/usr/local/sandbox_ronga/SOAR
+SOARHOME=/vault/sandbox_ronga/SOAR
 SOARLIBS=-L $(SOARHOME)/bin -lSoar
 #
 

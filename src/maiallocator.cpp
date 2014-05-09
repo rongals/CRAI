@@ -11,7 +11,6 @@
 #include "propagation.h"
 
 
-
 // FIXED_ALLOCATION
 // each user is assigned a fixed set of carriers chosen with the modulus 
 // function
@@ -38,11 +37,13 @@
 //
 //
 
+#define TIMEDELTA 10 // seconds between each report
+
 //#define SHOW_POWER
 //#define SHOW_MATRIX
-#define SHOW_SOAR
-#define SPAWN_DEBUGGER
-#define PAUSED
+//#define SHOW_SOAR
+//#define SPAWN_DEBUGGER
+//#define PAUSED
 
 //
 //
@@ -166,6 +167,11 @@ void MAIAllocator::Setup() {
   csicount = 0;
   noDecisions = 0;
   ostringstream cmd;
+
+  //
+  // time
+  //
+  time(&reporttime);
 
   //
   // Random Generator
@@ -872,8 +878,13 @@ void MAIAllocator::Run() {
 
 } // if DECISION_INTERVAL % 0
 
+  //
+  // every 10s dump frame count
+  //
+  time(&nowtime);
 
-  if (framecount % 1000 == 0) {
+  if (difftime(nowtime,reporttime) > TIMEDELTA) {
+	  reporttime = nowtime;
 	  cout << "frame:" << framecount << "\r";
 	  cout.flush();
   }

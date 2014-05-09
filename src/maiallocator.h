@@ -16,6 +16,7 @@
 #include "gsl/gsl_math.h"
 #include "gsl/gsl_rng.h"
 #include "gsl/gsl_sort_vector.h"
+#include <time.h>
 
 //
 // SOAR Artificial Intelligence Support 
@@ -43,6 +44,7 @@ class MAIAllocator : public Block {
   ////////   Local Attributes
  
   unsigned int curruser,framecount, ericount, csicount, numberCommands, input_time, max_errors, noDecisions;
+  time_t nowtime,reporttime;
   gsl_matrix_uint *Hperm;
   gsl_permutation *p; 
   gsl_vector *huserabs;
@@ -161,7 +163,7 @@ public:
     ,N("Carriers",16,"number of carriers")
     ,J("CodedSymbs",16,"coded symbols")
     ,Mode("AllocatorMode",1,"0=fca,1=bst,2=swp,3=ovl,4=SOAR") // note: leave default to non SOAR mode
-    ,SoarFn("SoarFn","/usr/local/sandbox_ronga/CRAI/soar-agents/crai-rev6.soar","SOAR agent filename")
+    ,SoarFn("SoarFn","/vault/sandbox_ronga/CRAI/soar-agents/crai-rev6.soar","SOAR agent filename")
 
     {
 
