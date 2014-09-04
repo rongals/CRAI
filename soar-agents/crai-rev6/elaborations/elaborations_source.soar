@@ -1,3 +1,4 @@
 source _all.soar
+source avoid-bad-swap.soar
 source top-state.soar
 source user.soar

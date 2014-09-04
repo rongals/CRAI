@@ -1,3 +1,6 @@
+#
+# user substate
+#
 sp {crai*propose*user
    (state <s> ^name crai
               ^io.input-link.usrmap.user.uid <uid>
@@ -7,3 +10,4 @@ sp {crai*propose*user
    (<op> ^name user
          ^uid <uid>)
 }
+

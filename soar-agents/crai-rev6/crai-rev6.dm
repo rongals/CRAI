@@ -1,4 +1,4 @@
-112
+123
 SOAR_ID 0
 SOAR_ID 1
 SOAR_ID 2
@@ -27,7 +27,7 @@ SOAR_ID 24
 ENUMERATION 25 1 increase-power
 SOAR_ID 26
 ENUMERATION 27 1 implement-increase-power
-ENUMERATION 28 1 crai
+ENUMERATION 28 2 crai user
 SOAR_ID 29
 SOAR_ID 30
 SOAR_ID 31
@@ -111,7 +111,18 @@ SOAR_ID 108
 ENUMERATION 109 1 user-selected
 SOAR_ID 110
 ENUMERATION 111 1 swap
-112
+ENUMERATION 112 1 no
+SOAR_ID 113
+SOAR_ID 114
+ENUMERATION 115 1 user
+SOAR_ID 116
+SOAR_ID 117
+SOAR_ID 118
+ENUMERATION 119 1 user
+SOAR_ID 120
+SOAR_ID 121
+ENUMERATION 122 1 assign-power
+123
 0 conflicts 29
 0 current-time 96
 0 free-carriers 30
@@ -135,8 +146,13 @@ ENUMERATION 111 1 swap
 0 operator 106
 0 operator 108
 0 operator 110
+0 operator 114
+0 operator 121
+0 pow-issued 112
 0 processed 97
+0 selected 118
 0 superstate 6
+0 superstate 116
 0 top-state 0
 0 type 5
 1 input-link 2
@@ -147,6 +163,7 @@ ENUMERATION 111 1 swap
 2 isdummy 79
 2 usrmap 65
 3 assign-free 64
+3 swap-carriers 113
 4 assign 63
 4 deassign 52
 4 name 7
@@ -224,3 +241,8 @@ ENUMERATION 111 1 swap
 106 name 107
 108 name 109
 110 name 111
+114 name 115
+116 operator 117
+117 name 119
+117 uid 120
+121 name 122
